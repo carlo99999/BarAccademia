@@ -189,8 +189,8 @@ while True:
         st.session_state.latest_id = obj[0][0] if obj else None
         write_container.title("Nessuno scontrino presente")
     obj= get_objects(one=True)
-    
-    if st.session_state.latest_id == obj[0][0] and first_run==False:
+    test=obj[0][0] if obj else -1
+    if st.session_state.latest_id == test and first_run==False:
         write_container.empty()
         write_container.title("Scontrini recenti")
         obj = get_objects()
@@ -214,7 +214,7 @@ while True:
         write_container.markdown(f"<ul class='order-list'>{order_list}</ul>", unsafe_allow_html=True)
         
         first_run=True
-    elif st.session_state.latest_id != obj[0][0]:
+    elif st.session_state.latest_id != test and test!=-1:
         write_container.empty()
         markdown = f"""# <span style="color:rgb(47,89,182)">Ricevuta di Acquisto</span>
 
