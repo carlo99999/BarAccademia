@@ -27,8 +27,7 @@ class AddObjectView(View):
                     try:
                         date = datetime.fromisoformat(date)
                     except ValueError:
-                        
-                        return JsonResponse({'status': 'error', 'message': 'data must be a datetime object'})
+                        date= datetime.now()
                 client=data.get('cliente')
                 if client == None:
                     return JsonResponse({'status': 'error', 'message': 'cliente is required'})
