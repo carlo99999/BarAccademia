@@ -202,10 +202,11 @@ while True:
         
         order_list = ""
         for i,order in enumerate(obj):
+                print(type(order[1]))
                 order_list += f"""<li>
                     <div class="order-details">
                         <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
-                        <div class="order-date" style="font-size: 30px;"><b>{order[1][19]}</b></div>
+                        <div class="order-date" style="font-size: 30px;"><b>{order[1]}</b></div>
                         <div class="order-client" style="font-size: 30px;"><b>{order[4]}</b></div>
                     </div>
                 </li>
@@ -216,9 +217,10 @@ while True:
         first_run=True
     elif st.session_state.latest_id != test and test!=-1:
         write_container.empty()
+        
         markdown = f"""# <span style="color:rgb(47,89,182); font-size: 80px;">Ricevuta di Acquisto</span>
 
-**<span style="color:black;font-size: 50px;">Data: {obj[0][1][19]} </span>**
+**<span style="color:black;font-size: 50px;">Data: {obj[0][1]} </span>**
 ----
 **<span style="color:black;font-size: 50px;">Cliente: {obj[0][3]}</span>**
 ---
