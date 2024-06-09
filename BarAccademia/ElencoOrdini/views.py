@@ -22,7 +22,7 @@ class AddObjectView(View):
                 
                 date=data.get('data')
                 if date == None:
-                    return JsonResponse({'status': 'error', 'message': 'data is required'})
+                    date= datetime.now()
                 if not isinstance(date, datetime):
                     try:
                         date = datetime.fromisoformat(date)
