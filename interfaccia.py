@@ -205,8 +205,8 @@ while True:
         order_list = ""
         for i,order in enumerate(obj):
             
-            if isinstance(order[1], str):
-                data_di_oggi = datetime.strptime(order[1], "%Y-%m-%d %H:%M:%S.%f")
+            if len(order[1])>19:
+                data_di_oggi = order[1][:19]
             order_list += f"""<li>
                 <div class="order-details">
                     <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
