@@ -204,16 +204,17 @@ while True:
         
         order_list = ""
         for i,order in enumerate(obj):
-                if isinstance(order[1], datetime):
-                    order[1] = order[1].strftime("%d/%m/%Y %H:%M:%S")
-                order_list += f"""<li>
-                    <div class="order-details">
-                        <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
-                        <div class="order-date" style="font-size: 30px;"><b>{order[1]}</b></div>
-                        <div class="order-client" style="font-size: 30px;"><b>{order[4]}</b></div>
-                    </div>
-                </li>
-                """
+            print(type(order[1]))
+            if isinstance(order[1], datetime):
+                order[1] = order[1].strftime("%d/%m/%Y %H:%M:%S")
+            order_list += f"""<li>
+                <div class="order-details">
+                    <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
+                    <div class="order-date" style="font-size: 30px;"><b>{order[1]}</b></div>
+                    <div class="order-client" style="font-size: 30px;"><b>{order[4]}</b></div>
+                </div>
+            </li>
+            """
         
         write_container.markdown(f"<ul class='order-list'>{order_list}</ul>", unsafe_allow_html=True)
         
