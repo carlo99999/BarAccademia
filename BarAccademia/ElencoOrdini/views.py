@@ -6,6 +6,8 @@ import json
 from .models import Ordine
 from dotenv import load_dotenv
 import os
+import datetime
+from datetime import datetime
 
 load_dotenv()
 bearer_token = os.getenv("BEARER_TOKEN")
@@ -17,11 +19,30 @@ class AddObjectView(View):
         if request.method == 'POST':
             data = json.loads(request.body)
             if data.get("bearer_token")==bearer_token:
+                
                 date=data.get('data')
+                if date == None:
+                    return JsonResponse({'status': 'error', 'message': 'data is required'})
+                if isinstance(date, datetime):
+                    dt=date.fromisoformat(date)
+                    date=str(dt.date())
+                    try:
+                        hour=dt.time()
+                    except:
+                        hour=None
+                    str_date=f'{date}'
+                    if hour != None:
+                        str_date+=f'alle ore {hour}'
                 client=data.get('cliente')
+                if client == None:
+                    return JsonResponse({'status': 'error', 'message': 'cliente is required'})
                 product=data.get('prodotto')
+                if product == None:
+                    return JsonResponse({'status': 'error', 'message': 'prodotto is required'})
                 receipt_number=data.get('n_scontrino')
-                obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
+                if receipt_number == None:
+                    return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
+                obj = Ordine(data=str_date, cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
