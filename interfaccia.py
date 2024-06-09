@@ -175,7 +175,9 @@ st.markdown(
     
 if "close_modal" not in st.session_state:
     st.session_state.close_modal = False
-    
+
+if "latest_id" not in st.session_state:
+    st.session_state.latest_id = None
 
 
 obj = get_objects()
@@ -185,7 +187,7 @@ write_container = st.empty()
 
 
 while True:
-    if "latest_id" not in st.session_state:
+    if st.session_state.latest_id == None:
         st.session_state.latest_id = obj[0][0] if obj else None
         write_container.title("Nessuno scontrino presente")
     obj= get_objects(one=True)
