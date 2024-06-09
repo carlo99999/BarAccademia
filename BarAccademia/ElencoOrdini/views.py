@@ -23,16 +23,8 @@ class AddObjectView(View):
                 date=data.get('data')
                 if date == None:
                     return JsonResponse({'status': 'error', 'message': 'data is required'})
-                if isinstance(date, datetime):
-                    dt=date.fromisoformat(date)
-                    date=str(dt.date())
-                    try:
-                        hour=dt.time()
-                    except:
-                        hour=None
-                    str_date=f'{date}'
-                    if hour != None:
-                        str_date+=f'alle ore {hour}'
+                if not isinstance(date, datetime):
+                    return JsonResponse({'status': 'error', 'message': 'data must be a datetime object'})
                 client=data.get('cliente')
                 if client == None:
                     return JsonResponse({'status': 'error', 'message': 'cliente is required'})
@@ -42,7 +34,7 @@ class AddObjectView(View):
                 receipt_number=data.get('n_scontrino')
                 if receipt_number == None:
                     return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
-                obj = Ordine(data=str_date, cliente=client, prodotto=product, n_scontrino=receipt_number)
+                obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
