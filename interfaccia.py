@@ -207,6 +207,8 @@ while True:
             
             if len(order[1])>19:
                 data_di_oggi = order[1][:19]
+            else:
+                data_di_oggi = order[1]
             order_list += f"""<li>
                 <div class="order-details">
                     <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
@@ -221,10 +223,13 @@ while True:
         first_run=True
     elif st.session_state.latest_id != test and test!=-1:
         write_container.empty()
-        
+        if len(obj[0][1])>19:
+            data_di_oggi = obj[0][1][:19]
+        else:
+            data_di_oggi = obj[0][1]
         markdown = f"""# <span style="color:rgb(47,89,182); font-size: 80px;">Ricevuta di Acquisto</span>
 
-**<span style="color:black;font-size: 50px;">Data: {obj[0][1]} </span>**
+**<span style="color:black;font-size: 50px;">Data: {data_di_oggi} </span>**
 ----
 **<span style="color:black;font-size: 50px;">Cliente: {obj[0][3]}</span>**
 ---
