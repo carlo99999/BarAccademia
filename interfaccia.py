@@ -206,11 +206,11 @@ while True:
         for i,order in enumerate(obj):
             
             if isinstance(order[1], str):
-                order[1] = datetime.strptime(order[1], "%Y-%m-%d %H:%M:%S.%f")
+                data_di_oggi = datetime.strptime(order[1], "%Y-%m-%d %H:%M:%S.%f")
             order_list += f"""<li>
                 <div class="order-details">
                     <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
-                    <div class="order-date" style="font-size: 30px;"><b>{order[1]}</b></div>
+                    <div class="order-date" style="font-size: 30px;"><b>{data_di_oggi}</b></div>
                     <div class="order-client" style="font-size: 30px;"><b>{order[4]}</b></div>
                 </div>
             </li>
