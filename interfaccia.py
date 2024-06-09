@@ -214,7 +214,7 @@ while True:
         first_run=True
     elif st.session_state.latest_id != test and test!=-1:
         write_container.empty()
-        markdown = f"""# <span style="color:rgb(47,89,182)">Ricevuta di Acquisto</span>
+        markdown = f"""# <span style="color:rgb(47,89,182); font-size: 80px;">Ricevuta di Acquisto</span>
 
 **<span style="color:black;font-size: 50px;">Data: {obj[0][1]} </span>**
 ----
