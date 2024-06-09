@@ -202,9 +202,9 @@ while True:
         for i,order in enumerate(obj):
                 order_list += f"""<li>
                     <div class="order-details">
-                        <div class="order-title" style="font-size: 30px;">Scontrino N° {order[0]} -- {order[3]}</div>
-                        <div class="order-date" style="font-size: 30px;">{order[1]}</div>
-                        <div class="order-client" style="font-size: 30px;">{order[4]}</div>
+                        <div class="order-title" style="font-size: 30px;"><b>Scontrino N° {order[0]} -- {order[3]}</b></div>
+                        <div class="order-date" style="font-size: 30px;"><b>{order[1]}</b></div>
+                        <div class="order-client" style="font-size: 30px;"><b>{order[4]}</b></div>
                     </div>
                 </li>
                 """
