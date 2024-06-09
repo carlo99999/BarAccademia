@@ -216,13 +216,13 @@ while True:
         write_container.empty()
         markdown = f"""# <span style="color:rgb(47,89,182)">Ricevuta di Acquisto</span>
 
-**<span style="color:black">Data: {obj[0][1]} </span>**
+**<span style="color:black;font-size: 50px;">Data: {obj[0][1]} </span>**
 ----
-**<span style="color:black">Cliente: {obj[0][3]}</span>**
+**<span style="color:black;font-size: 50px;">Cliente: {obj[0][3]}</span>**
 ---
-**<span style="color:black">Prodotto: {obj[0][4]} </span>**
+**<span style="color:black;font-size: 50px;">Prodotto: {obj[0][4]} </span>**
 ---
-**<span style="color:black">Numero Scontrino: {obj[0][2]} </span>**
+**<span style="color:black;font-size: 50px;">Numero Scontrino: {obj[0][2]} </span>**
 ---
 
 
