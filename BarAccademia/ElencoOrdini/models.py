@@ -16,7 +16,7 @@ class Prodotto(models.Model):
         return self.nome
 
 class Ordine(models.Model):
-    data = models.DateField()
+    data = models.DateTimeField()
     cliente = models.CharField(max_length=100)
     prodotto = models.CharField(max_length=200)
     n_scontrino = models.IntegerField()
