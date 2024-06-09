@@ -24,7 +24,10 @@ class AddObjectView(View):
                 if date == None:
                     return JsonResponse({'status': 'error', 'message': 'data is required'})
                 if not isinstance(date, datetime):
-                    return JsonResponse({'status': 'error', 'message': 'data must be a datetime object'})
+                    try:
+                        date = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+                    except TypeError:
+                        return JsonResponse({'status': 'error', 'message': 'data must be a datetime object'})
                 client=data.get('cliente')
                 if client == None:
                     return JsonResponse({'status': 'error', 'message': 'cliente is required'})
