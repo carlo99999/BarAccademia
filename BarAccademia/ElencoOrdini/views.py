@@ -19,14 +19,10 @@ class AddObjectView(View):
         if request.method == 'POST':
             data = json.loads(request.body)
             if data.get("bearer_token")==bearer_token:
-                
-                date=data.get('data')
-                if date == None:
+                if data.get("date")==None:
                     date= datetime.now()
-                if not isinstance(date, datetime):
-                    try:
-                        date = datetime.fromisoformat(date)
-                    except ValueError:
+                else:
+                    if not isinstance(data.get("date"), datetime):
                         date= datetime.now()
                 client=data.get('cliente')
                 if client == None:
@@ -37,7 +33,10 @@ class AddObjectView(View):
                 receipt_number=data.get('n_scontrino')
                 if receipt_number == None:
                     return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
-                obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
+                if date!=None:
+                    obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
+                else:
+                    obj = Ordine(cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
