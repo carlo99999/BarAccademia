@@ -5,7 +5,7 @@ import sqlite3
 
 
 # Configura la pagina con titolo e icona
-st.set_page_config(page_title="Bar Accademia", page_icon=":cocktail:", layout="wide")
+st.set_page_config(page_title="Bar Accademia", page_icon=":cocktail:", layout="wide",)
 
 # Configura il database
 # Inclusione dei CSS e dei collegamenti ai framework
@@ -203,11 +203,15 @@ while True:
                 order_list += f"""<li>
                     <div class="order-icon"><span class="material-icons">local_grocery_store</span></div>
                     <div class="order-details">
-                        <div class="order-title">Scontrino N° {order[0]}</div>
+                    <div>
+                        <span class="order-title">Scontrino N° {order[0]}</span>
+                        <span>{order[3]}</span>
+                        </div>
                         <div class="order-date">{order[1]}</div>
+                        
                         <div class="order-client">{order[4]}</div>
                     </div>
-                    <div class="order-total">{order[3]}</div>
+                    
                 </li>
                 """
         
