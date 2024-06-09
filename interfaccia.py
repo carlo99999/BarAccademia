@@ -204,7 +204,7 @@ while True:
         
         order_list = ""
         for i,order in enumerate(obj):
-            print(type(order[1]))
+            print(type(order[1]),len(order[1]))
             if isinstance(order[1], datetime):
                 order[1] = order[1].strftime("%d/%m/%Y %H:%M:%S")
             order_list += f"""<li>
