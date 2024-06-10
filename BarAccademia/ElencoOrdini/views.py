@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 from datetime import datetime
+import pytz
 
 load_dotenv()
 bearer_token = os.getenv("BEARER_TOKEN")
@@ -17,13 +18,15 @@ class AddObjectView(View):
     def post(self, request, *args, **kwargs):
         
         if request.method == 'POST':
+            rome_tz = pytz.timezone('Europe/Rome')
+
             data = json.loads(request.body)
             if data.get("bearer_token")==bearer_token:
                 if data.get("date")==None:
-                    date= datetime.now()
+                    date= datetime.now(rome_tz)
                 else:
                     if not isinstance(data.get("date"), datetime):
-                        date= datetime.now()
+                        date= datetime.now(rome_tz)
                 client=data.get('cliente')
                 if client == None:
                     return JsonResponse({'status': 'error', 'message': 'cliente is required'})
