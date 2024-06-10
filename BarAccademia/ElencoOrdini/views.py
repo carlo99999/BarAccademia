@@ -22,7 +22,7 @@ class AddObjectView(View):
             data = json.loads(request.body)
             if data.get("bearer_token")==bearer_token:
                 
-                
+                date= datetime.now(rome_tz)
                 
                 client=data.get('cliente')
                 if client == None:
@@ -34,7 +34,7 @@ class AddObjectView(View):
                 if receipt_number == None:
                     return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
                 
-                obj = Ordine(data=datetime.now(rome_tz), cliente=client, prodotto=product, n_scontrino=receipt_number)
+                obj = Ordine(data=date+timedelta(hours=2), cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
