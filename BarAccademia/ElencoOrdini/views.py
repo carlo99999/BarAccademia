@@ -6,7 +6,7 @@ import json
 from .models import Ordine
 from dotenv import load_dotenv
 import os
-from datetime import datetime
+from datetime import datetime,timedelta
 import pytz
 
 load_dotenv()
@@ -34,7 +34,7 @@ class AddObjectView(View):
                 if receipt_number == None:
                     return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
                 
-                obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
+                obj = Ordine(data=date+timedelta(hours=2), cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
