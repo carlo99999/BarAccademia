@@ -38,8 +38,6 @@ class AddObjectView(View):
                     return JsonResponse({'status': 'error', 'message': 'n_scontrino is required'})
                 if date!=None:
                     obj = Ordine(data=date, cliente=client, prodotto=product, n_scontrino=receipt_number)
-                else:
-                    obj = Ordine(cliente=client, prodotto=product, n_scontrino=receipt_number)
                 obj.save()
                 return JsonResponse({'status': 'success', 'id': obj.id})
             else:
